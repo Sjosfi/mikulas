@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/common';
 import { GyerekekService } from './gyerekek.service';
 import { CreateGyerekekDto } from './dto/create-gyerekek.dto';
 import { UpdateGyerekekDto } from './dto/update-gyerekek.dto';
@@ -20,6 +20,11 @@ export class GyerekekController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.gyerekekService.findOne(+id);
+  }
+
+  @Put(':id/jatekok/:jatekId')
+  addToy(@Param('id') id: string, @Param('jatekId') jatekId: string) {
+    return this.gyerekekService.jatekHozzaAdas(+id, +jatekId);
   }
 
   @Patch(':id')
